@@ -25,4 +25,21 @@ export class TodosController {
         const body = req.body;
         res.json(body)
     }
+	public updateTodo = (req:Request,res:Response){
+
+		const id = +req.params.id;
+        if(isNaN(id))return res.status(400).json({error: 'ID argument is not a number'})
+
+		const todo = todos.find((todo)=> todo.id === id);
+		if(!todo) return res.status(404).json({error: `Todo whit id ${id} not found`})
+
+		// const {text} = req.body;
+		// if(!text)return res.status(400).json({error: "Text property is required"})
+
+		// todo.text = text;
+
+		res.json(todo);
+
+		res.json()
+	}
 }
